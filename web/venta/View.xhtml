@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="VentaViewDlg" widgetVar="VentaViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewVentaTitle}">
+            <h:form id="VentaViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{ventaController.selected != null}">
+                        <h:outputText value="#{bundle.ViewVentaLabel_codventa}"/>
+                        <h:outputText value="#{ventaController.selected.codventa}" title="#{bundle.ViewVentaTitle_codventa}"/>
+                        <h:outputText value="#{bundle.ViewVentaLabel_fechaventa}"/>
+                        <h:outputText value="#{ventaController.selected.fechaventa}" title="#{bundle.ViewVentaTitle_fechaventa}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewVentaLabel_monto}"/>
+                        <h:outputText value="#{ventaController.selected.monto}" title="#{bundle.ViewVentaTitle_monto}"/>
+                        <h:outputText value="#{bundle.ViewVentaLabel_codcliente}"/>
+                        <h:outputText value="#{ventaController.selected.codcliente}" title="#{bundle.ViewVentaTitle_codcliente}"/>
+                        <h:outputText value="#{bundle.ViewVentaLabel_coddetalleventa}"/>
+                        <h:outputText value="#{ventaController.selected.coddetalleventa}" title="#{bundle.ViewVentaTitle_coddetalleventa}"/>
+                        <h:outputText value="#{bundle.ViewVentaLabel_codusuario}"/>
+                        <h:outputText value="#{ventaController.selected.codusuario}" title="#{bundle.ViewVentaTitle_codusuario}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="VentaViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

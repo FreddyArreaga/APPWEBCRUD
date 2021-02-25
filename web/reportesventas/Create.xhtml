@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ReportesventasCreateDlg" widgetVar="ReportesventasCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateReportesventasTitle}">
+            <h:form id="ReportesventasCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{reportesventasController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateReportesventasLabel_codrv}" for="codrv" />
+                        <p:inputText id="codrv" value="#{reportesventasController.selected.codrv}" title="#{bundle.CreateReportesventasTitle_codrv}" required="true" requiredMessage="#{bundle.CreateReportesventasRequiredMessage_codrv}"/>
+                        <p:outputLabel value="#{bundle.CreateReportesventasLabel_fechareportv}" for="fechareportv" />
+                        <p:calendar id="fechareportv" pattern="MM/dd/yyyy HH:mm:ss" value="#{reportesventasController.selected.fechareportv}" title="#{bundle.EditReportesventasTitle_fechareportv}" required="true" requiredMessage="#{bundle.EditReportesventasRequiredMessage_fechareportv}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateReportesventasLabel_codventas}" for="codventas" />
+                        <p:selectOneMenu id="codventas" value="#{reportesventasController.selected.codventas}" >
+                            <f:selectItems value="#{ventaController.itemsAvailableSelectOne}"
+                                           var="codventasItem"
+                                           itemValue="#{codventasItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{reportesventasController.create}" value="#{bundle.Save}" update="display,:ReportesventasListForm:datalist,:growl" oncomplete="handleSubmit(args,'ReportesventasCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ReportesventasCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

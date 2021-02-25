@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CompraCreateDlg" widgetVar="CompraCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateCompraTitle}">
+            <h:form id="CompraCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{compraController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateCompraLabel_codcompra}" for="codcompra" />
+                        <p:inputText id="codcompra" value="#{compraController.selected.codcompra}" title="#{bundle.CreateCompraTitle_codcompra}" required="true" requiredMessage="#{bundle.CreateCompraRequiredMessage_codcompra}"/>
+                        <p:outputLabel value="#{bundle.CreateCompraLabel_fechacompra}" for="fechacompra" />
+                        <p:calendar id="fechacompra" pattern="MM/dd/yyyy HH:mm:ss" value="#{compraController.selected.fechacompra}" title="#{bundle.EditCompraTitle_fechacompra}" required="true" requiredMessage="#{bundle.EditCompraRequiredMessage_fechacompra}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateCompraLabel_monto}" for="monto" />
+                        <p:inputText id="monto" value="#{compraController.selected.monto}" title="#{bundle.CreateCompraTitle_monto}" required="true" requiredMessage="#{bundle.CreateCompraRequiredMessage_monto}"/>
+                        <p:outputLabel value="#{bundle.CreateCompraLabel_coddetallecompra}" for="coddetallecompra" />
+                        <p:selectOneMenu id="coddetallecompra" value="#{compraController.selected.coddetallecompra}" >
+                            <f:selectItems value="#{detallecompraController.itemsAvailableSelectOne}"
+                                           var="coddetallecompraItem"
+                                           itemValue="#{coddetallecompraItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateCompraLabel_codproveedor}" for="codproveedor" />
+                        <p:selectOneMenu id="codproveedor" value="#{compraController.selected.codproveedor}" >
+                            <f:selectItems value="#{proveedorController.itemsAvailableSelectOne}"
+                                           var="codproveedorItem"
+                                           itemValue="#{codproveedorItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{compraController.create}" value="#{bundle.Save}" update="display,:CompraListForm:datalist,:growl" oncomplete="handleSubmit(args,'CompraCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CompraCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

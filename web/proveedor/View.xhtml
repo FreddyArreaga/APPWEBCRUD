@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ProveedorViewDlg" widgetVar="ProveedorViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewProveedorTitle}">
+            <h:form id="ProveedorViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{proveedorController.selected != null}">
+                        <h:outputText value="#{bundle.ViewProveedorLabel_idproveedor}"/>
+                        <h:outputText value="#{proveedorController.selected.idproveedor}" title="#{bundle.ViewProveedorTitle_idproveedor}"/>
+                        <h:outputText value="#{bundle.ViewProveedorLabel_ruc}"/>
+                        <h:outputText value="#{proveedorController.selected.ruc}" title="#{bundle.ViewProveedorTitle_ruc}"/>
+                        <h:outputText value="#{bundle.ViewProveedorLabel_nombres}"/>
+                        <h:outputText value="#{proveedorController.selected.nombres}" title="#{bundle.ViewProveedorTitle_nombres}"/>
+                        <h:outputText value="#{bundle.ViewProveedorLabel_apellido}"/>
+                        <h:outputText value="#{proveedorController.selected.apellido}" title="#{bundle.ViewProveedorTitle_apellido}"/>
+                        <h:outputText value="#{bundle.ViewProveedorLabel_telefono}"/>
+                        <h:outputText value="#{proveedorController.selected.telefono}" title="#{bundle.ViewProveedorTitle_telefono}"/>
+                        <h:outputText value="#{bundle.ViewProveedorLabel_tipocomprobante}"/>
+                        <h:outputText value="#{proveedorController.selected.tipocomprobante}" title="#{bundle.ViewProveedorTitle_tipocomprobante}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ProveedorViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
